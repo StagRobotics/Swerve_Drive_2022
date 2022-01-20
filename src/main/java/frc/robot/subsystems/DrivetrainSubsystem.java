@@ -23,13 +23,13 @@ import frc.robot.RobotMap;
 import frc.robot.commands.DriveCommand;
 
 public class DrivetrainSubsystem extends Subsystem {
-    private static final double TRACKWIDTH = 26.5;
-    private static final double WHEELBASE = 20.5;
+    private static final double TRACKWIDTH = 19.5;
+    private static final double WHEELBASE = 26.5;
 
-    private static final double FRONT_LEFT_ANGLE_OFFSET = -Math.toRadians(348.6);
-    private static final double FRONT_RIGHT_ANGLE_OFFSET = -Math.toRadians(245.3);
-    private static final double BACK_LEFT_ANGLE_OFFSET = -Math.toRadians(145.7);
-    private static final double BACK_RIGHT_ANGLE_OFFSET = -Math.toRadians(89.5);
+    private static final double FRONT_LEFT_ANGLE_OFFSET = -Math.toRadians(156.9);
+    private static final double FRONT_RIGHT_ANGLE_OFFSET = -Math.toRadians(339.8);
+    private static final double BACK_LEFT_ANGLE_OFFSET = -Math.toRadians(258.2);
+    private static final double BACK_RIGHT_ANGLE_OFFSET = -Math.toRadians(47.5);
 
     private static DrivetrainSubsystem instance;
 
