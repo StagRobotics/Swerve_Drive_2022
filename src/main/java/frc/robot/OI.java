@@ -1,5 +1,12 @@
 package frc.robot;
 
+import frc.robot.commands.CancelClimb;
+import frc.robot.commands.ClimbDown;
+import frc.robot.commands.ClimbUp;
+import frc.robot.commands.Grab;
+import frc.robot.commands.Kicker;
+import frc.robot.commands.ToggleIntake;
+import frc.robot.commands.ToggleShooter;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -16,6 +23,15 @@ public class OI {
         new JoystickButton(primaryJoystick, 7).whenPressed(
                 new InstantCommand(() -> DrivetrainSubsystem.getInstance().resetGyroscope())
         );
+        new JoystickButton(primaryJoystick, 1).whenPressed(
+            new ToggleIntake()
+        );
+        new JoystickButton(primaryJoystick, 3).whenPressed(new ToggleShooter());
+        new JoystickButton(primaryJoystick, 2).whenPressed(new Grab());
+        new JoystickButton(primaryJoystick, 4).whenPressed(new CancelClimb());
+        new JoystickButton(primaryJoystick, 5).whenPressed(new ClimbUp());
+        new JoystickButton(primaryJoystick, 6).whenPressed(new ClimbDown());
+        new JoystickButton(primaryJoystick, 8).whenPressed(new Kicker());
     }
 
     public Joystick getPrimaryJoystick() {
