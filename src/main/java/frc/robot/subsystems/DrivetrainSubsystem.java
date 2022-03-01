@@ -29,10 +29,10 @@ public class DrivetrainSubsystem extends Subsystem {
     private static final double TRACKWIDTH = 19.5;
     private static final double WHEELBASE = 26.5;
 
-    private static final double FRONT_LEFT_ANGLE_OFFSET = -Math.toRadians(212.3);
-    private static final double FRONT_RIGHT_ANGLE_OFFSET = -Math.toRadians(78.8);
-    private static final double BACK_LEFT_ANGLE_OFFSET = -Math.toRadians(278.7);
-    private static final double BACK_RIGHT_ANGLE_OFFSET = -Math.toRadians(336.6);
+    private static final double FRONT_LEFT_ANGLE_OFFSET = -Math.toRadians(211.5);
+    private static final double FRONT_RIGHT_ANGLE_OFFSET = -Math.toRadians(76.9);
+    private static final double BACK_LEFT_ANGLE_OFFSET = -Math.toRadians(308.7);
+    private static final double BACK_RIGHT_ANGLE_OFFSET = -Math.toRadians(337.2);
 
     private static DrivetrainSubsystem instance;
 
@@ -116,6 +116,10 @@ public class DrivetrainSubsystem extends Subsystem {
 
         SmartDashboard.putNumber("Gyroscope Angle", gyroscope.getAngle().toDegrees());
 
+        SmartDashboard.putNumber("LimeLightX", tx.getDouble(0.0));
+        SmartDashboard.putNumber("LimeLightY", ty.getDouble(0.0));
+        SmartDashboard.putNumber("LimeLightArea", ta.getDouble(0.0));
+
         frontLeftModule.updateState(TimedRobot.kDefaultPeriod);
         frontRightModule.updateState(TimedRobot.kDefaultPeriod);
         backLeftModule.updateState(TimedRobot.kDefaultPeriod);
@@ -147,11 +151,7 @@ public class DrivetrainSubsystem extends Subsystem {
     protected void initDefaultCommand() {
         setDefaultCommand(new DriveCommand());
     }
-    public void log(){
-        SmartDashboard.putNumber("LimeLightX", tx.getDouble(0.0));
-        SmartDashboard.putNumber("LimeLightY", ty.getDouble(0.0));
-        SmartDashboard.putNumber("LimeLightArea", ta.getDouble(0.0));
-    }
+    
     public void getBall(){
         if (tx.getDouble(0.0) < -1){
             getInstance().drive(new Translation2d(0.0, 0.5), 0.0, true);

@@ -4,16 +4,21 @@ import com.ctre.phoenix.motorcontrol.VictorSPXControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.motorcontrol.PWMVictorSPX;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 public class Shooter extends Subsystem {
     private PWMVictorSPX smbs = new PWMVictorSPX(RobotMap.backspinMotor);
     private PWMVictorSPX sms = new PWMVictorSPX(RobotMap.shooterMotor);
     private DoubleSolenoid kicker = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.kicker1, RobotMap.kicker2);
-    
+    private Encoder frontEncoder = new Encoder(6,7, false, Encoder.EncodingType.k4X);
+    private Encoder backEncoder = new Encoder(4,5, false, Encoder.EncodingType.k4X);
+
 
 
     private boolean Shoot = false;
@@ -21,6 +26,12 @@ public class Shooter extends Subsystem {
     private boolean Spin = false;
     private double SMSpeed = 0.5;
     private double BSSpeed = 0.5;
+    private double FRPS = 0.0;
+    private double BRPS = 0.0;
+    double Fdiameter = 6/12; // 6 inch wheels
+	double Fdist =0.5*3.14/1024;  // ft per pulse
+    double Bdiameter = 4/12;
+    double Bdist = 0.33*3.14/1024;
     private static Shooter instance;
 
     public Shooter(){
@@ -32,6 +43,8 @@ public class Shooter extends Subsystem {
     public void initDefaultCommand(){
         //Set the default command for a subsystem here. 
         // setDefaultCommand(new MySpecialCommand());
+        frontEncoder.setDistancePerPulse(Fdist);
+        backEncoder.setDistancePerPulse(Bdist);
     }
 
     public static Shooter getInstance() {
@@ -42,9 +55,15 @@ public class Shooter extends Subsystem {
         return instance;
     }
 
-    public void toggleWheel(){
-            System.out.println(Shoot);
+    public double getFRPS(){
+        return frontEncoder.getRate();
+    }
 
+    public double getBRPS(){
+        return backEncoder.getRate();
+    }
+
+    public void toggleWheel(){
             if (Shoot){
                 SMOn();
                 Shoot = false;
@@ -84,10 +103,6 @@ public class Shooter extends Subsystem {
         sms.set(0.0);
     }
     public void ToggleKicker(){
-
-        //kicker.set(DoubleSolenoid.Value.kForward);
-        //kicker.set(DoubleSolenoid.Value.kReverse);
-      
        if(kick == false){
             kicker.set(DoubleSolenoid.Value.kForward);
             kick = true;
@@ -97,5 +112,10 @@ public class Shooter extends Subsystem {
               kick = false;
             System.out.print(kick);
         }
+    }
+    
+    public void periodic() {
+        SmartDashboard.putNumber("Front RPS", getFRPS());
+        SmartDashboard.putNumber("Back RPS", getBRPS());
     }
 }

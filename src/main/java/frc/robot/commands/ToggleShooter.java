@@ -17,6 +17,7 @@ public class ToggleShooter extends Command {
     protected void execute(){
         Robot.m_Shooter.toggleSpin();
         Robot.m_Shooter.toggleWheel();
+        
     }
 
     @Override

@@ -53,9 +53,11 @@ public class Climber extends Subsystem {
         if(grab == false){
             grabber.set(DoubleSolenoid.Value.kForward);
             grab = true;
+            System.out.print(" grab on");
         }else if(grab = true){
             grabber.set(DoubleSolenoid.Value.kReverse);
             grab = false;
+            System.out.print("grab off");
         }
     }
 }

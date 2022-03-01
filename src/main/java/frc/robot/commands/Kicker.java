@@ -19,7 +19,7 @@ public class Kicker extends Command {
     @Override
     protected void execute(){
             Robot.m_Shooter.ToggleKicker();
-            Robot.m_clock.wait(1.0);
+            Robot.m_clock.wait(0.5);
             Robot.m_Shooter.ToggleKicker();
 
     }

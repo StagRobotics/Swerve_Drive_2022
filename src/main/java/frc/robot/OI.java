@@ -17,6 +17,7 @@ public class OI {
        Add your joysticks and buttons here
      */
     private Joystick primaryJoystick = new Joystick(0);
+    private Joystick secondaryJoystick = new Joystick(1);
 
     public OI() {
         // Back button zeroes the drivetrain
@@ -36,5 +37,9 @@ public class OI {
 
     public Joystick getPrimaryJoystick() {
         return primaryJoystick;
+    }
+    public Joystick getSecondaryJoystick() {
+            return secondaryJoystick;
+        
     }
 }
