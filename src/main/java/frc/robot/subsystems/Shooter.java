@@ -1,15 +1,11 @@
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.VictorSPXControlMode;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.motorcontrol.PWMVictorSPX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 public class Shooter extends Subsystem {
@@ -21,13 +17,11 @@ public class Shooter extends Subsystem {
 
 
 
-    private boolean Shoot = false;
+    private boolean Shoot = true;
     private boolean kick = false;
-    private boolean Spin = false;
-    private double SMSpeed = 0.5;
-    private double BSSpeed = 0.5;
-    private double FRPS = 0.0;
-    private double BRPS = 0.0;
+    private boolean Spin = true;
+    private double SMSpeed = 0.35;
+    private double BSSpeed = 0.4;
     double Fdiameter = 6/12; // 6 inch wheels
 	double Fdist =0.5*3.14/1024;  // ft per pulse
     double Bdiameter = 4/12;
@@ -65,43 +59,35 @@ public class Shooter extends Subsystem {
 
     public void toggleWheel(){
             if (Shoot){
-                SMOn();
+                sms.set(SMSpeed);
+                while(getFRPS() < 135){
+                    SMSpeed = SMSpeed + 0.01;
+                    sms.set(SMSpeed);
+                }
                 Shoot = false;
-                System.out.println("n/Shoot = " + Shoot);
+                
             }else{
-                SMOff();
+                sms.set(0.0);;
                 Shoot = true;
-                System.out.println("n/Shoot = " + Shoot);
+                
             }
     }
 
     public void toggleSpin(){
         if(Spin){
-            BSOn();
+            smbs.set(BSSpeed);
+            while(getBRPS() < 90){
+                BSSpeed = BSSpeed + 0.01;
+                smbs.set(BSSpeed);
+            }
             Spin = false;
-            System.out.print("n/Spin = " + Spin);
         }else{
-            BSOff();
+            smbs.set(0.0);
             Spin = true;
-            System.out.print("n/Spin =" +Spin);
         }
     }
 
-    public void BSOn(){
-        smbs.set(-BSSpeed);
-    }
-
-    public void BSOff(){
-        smbs.set(0.0);
-    }
-
-    public void SMOn(){
-        sms.set(SMSpeed);
-    }
-
-    public void SMOff(){
-        sms.set(0.0);
-    }
+    
     public void ToggleKicker(){
        if(kick == false){
             kicker.set(DoubleSolenoid.Value.kForward);

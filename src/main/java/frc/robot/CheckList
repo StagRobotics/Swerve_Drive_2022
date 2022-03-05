@@ -1,0 +1,16 @@
+Flash Radio to 1997 or replace with 1997 Radio
+Format RoboRio to 1997
+Is RoboRio on latest version?
+Is Radio firmware uptodate?
+Is DriveStation on latest FRC release?
+Need to be using teleopPeriodic in Robot.java
+Need to be using autonomousPeriodic in Robot.java
+Sonar code
+Use Climber sensors
+SmartDashboard layout
+LimeLight are we going to use Yes/No?
+Should we consider using a USB camera instead of LimeLight?
+Kicker not active until encoder readings are at the right level
+Pull Grabber in while driving
+Automate pieces or all of the climb process
+Turning the Robot can be done with readings from the Navx
