@@ -5,6 +5,7 @@ import frc.robot.commands.Two_Auto;
 import frc.robot.commands.Zero_Auto;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Clock;
+import frc.robot.subsystems.DistanceSensor;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
@@ -24,6 +25,7 @@ public class Robot extends TimedRobot {
     public static Clock m_clock;
     public static String AutoCommand = "";
     public static Command command;
+    public static DistanceSensor m_sonar;
     
 
     @Override
@@ -34,9 +36,9 @@ public class Robot extends TimedRobot {
         m_Shooter = Shooter.getInstance();
         m_climber = Climber.getInstance();
         m_clock = Clock.getInstance();
+        m_sonar = DistanceSensor.getInstance();
 
-        autoChooser.setDefaultOption("Do Nothing", "N");
-        autoChooser.addOption("0 Ball Auto", "0");
+        autoChooser.setDefaultOption("0 Ball Auto", "0");
         autoChooser.addOption("1 Ball Auto", "1");
         autoChooser.addOption("2 Ball Auto", "2");
 

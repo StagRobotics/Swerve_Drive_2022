@@ -4,8 +4,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.subsystems.Shooter;
 
-public class ToggleShooter extends Command {
-    public ToggleShooter(){
+public class MediumShooter extends Command {
+    public MediumShooter(){
         requires(Shooter.getInstance());
     }
     @Override
@@ -15,8 +15,8 @@ public class ToggleShooter extends Command {
 
     @Override
     protected void execute(){
-        Robot.m_Shooter.toggleSpin();
-        Robot.m_Shooter.toggleWheel();
+        //Robot.m_Shooter.toggleSpin();
+        Robot.m_Shooter.MediumWheel();
         
     }
 

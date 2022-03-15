@@ -8,12 +8,12 @@ public class One_Auto extends CommandGroup{
         addSequential(new Drive_Vertical(1.0, "forward"));
         addSequential(new wait(0.5));
         addSequential(new ToggleIntake());
-        addSequential(new ToggleShooter());
+        addSequential(new FastShooter());
         addSequential(new wait(1.0));
         addSequential(new Kicker());
         addSequential(new wait(1.0));
         addSequential(new Kicker());
         addSequential(new wait(0.5));
-        addSequential(new ToggleShooter());
+        addSequential(new FastShooter());
     }
 }

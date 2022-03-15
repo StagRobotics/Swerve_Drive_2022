@@ -26,9 +26,9 @@ public class Clock extends Subsystem {
     }
 
     double waitTime = 0.0;
-    Timer timer = new Timer();
-    public boolean wait(double time){
-        waitTime = time;
+    static Timer timer = new Timer();
+    public static boolean wait(double time){
+        final double waitTime = time;
         timer.reset();
         timer.start();
         while(timer.get() < waitTime){

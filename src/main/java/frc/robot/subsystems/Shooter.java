@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.motorcontrol.PWMVictorSPX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.OI;
 import frc.robot.RobotMap;
 
 public class Shooter extends Subsystem {
@@ -20,7 +21,8 @@ public class Shooter extends Subsystem {
     private boolean Shoot = true;
     private boolean kick = false;
     private boolean Spin = true;
-    private double SMSpeed = 0.35;
+    private double FastSpeed = .8;
+    private double MediumSpeed = 0.45;
     private double BSSpeed = 0.4;
     double Fdiameter = 6/12; // 6 inch wheels
 	double Fdist =0.5*3.14/1024;  // ft per pulse
@@ -57,28 +59,46 @@ public class Shooter extends Subsystem {
         return backEncoder.getRate();
     }
 
-    public void toggleWheel(){
+    public void FastWheel(){
             if (Shoot){
-                sms.set(SMSpeed);
-                while(getFRPS() < 135){
-                    SMSpeed = SMSpeed + 0.01;
-                    sms.set(SMSpeed);
-                }
+                sms.set(FastSpeed);
+                //while(getFRPS() < 155.0 && OI.secondaryJoystick.getRawButtonPressed(4)){
+                    //SMSpeed = SMSpeed + 0.01;
+                    //sms.set(SMSpeed);
+                    
+                //}
                 Shoot = false;
                 
             }else{
-                sms.set(0.0);;
+                sms.set(0.0);
                 Shoot = true;
                 
             }
     }
+    public void MediumWheel(){
+        if (Shoot){
+            sms.set(MediumSpeed);
+            //while(getFRPS() < 155.0 && OI.secondaryJoystick.getRawButtonPressed(4)){
+                //SMSpeed = SMSpeed + 0.01;
+                //sms.set(SMSpeed);
+                
+            //}
+            Shoot = false;
+            
+        }else{
+            sms.set(0.0);
+            Shoot = true;
+            
+        }
+}
 
     public void toggleSpin(){
         if(Spin){
             smbs.set(BSSpeed);
-            while(getBRPS() < 90){
+            while(getBRPS() < 90.0 && OI.secondaryJoystick.getRawButtonPressed(4)){
                 BSSpeed = BSSpeed + 0.01;
                 smbs.set(BSSpeed);
+
             }
             Spin = false;
         }else{
