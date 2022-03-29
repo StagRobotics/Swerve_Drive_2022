@@ -4,9 +4,10 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
-public class Intake extends Subsystem {
+public class Intake extends SubsystemBase {
     private boolean onIntake = false;
   private boolean extend = false;
   private DoubleSolenoid extender = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.extender1, RobotMap.extender2);
@@ -17,9 +18,7 @@ public class Intake extends Subsystem {
     super();
     System.out.print("Intake");
   }
-  public void initDefaultCommand(){
-          
-  }
+  
 
   public static Intake getInstance() {
     if (instance == null) {

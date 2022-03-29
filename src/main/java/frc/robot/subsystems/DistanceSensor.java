@@ -3,11 +3,10 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class DistanceSensor extends Subsystem {
-    protected void initDefaultCommand() {
-		// TODO Auto-generated method stub
-	}
+public class DistanceSensor extends SubsystemBase {
+    
 	public static DistanceSensor instance;
 	public static DistanceSensor getInstance() {
         if (instance == null) {

@@ -3,19 +3,15 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class Clock extends Subsystem {
+public class Clock extends SubsystemBase {
     private static Clock instance;
     public Clock(){
         super();
         System.out.print("Time");
     }
 
-    @Override
-    public void initDefaultCommand(){
-        //Set the default command for a subsystem here. 
-        // setDefaultCommand(new MySpecialCommand());
-    }
 
     public static Clock getInstance() {
         if (instance == null) {

@@ -3,17 +3,18 @@ package frc.robot.commands;
 import frc.robot.Robot;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.math.geometry.Translation2d;
 import frc.robot.Utilities;
 
-public class DriveCommand extends Command {
+public class DriveCommand extends CommandBase {
 
     public DriveCommand() {
-        requires(DrivetrainSubsystem.getInstance());
+        addRequirements(DrivetrainSubsystem.getInstance());
     }
 
     @Override
-    protected void execute() {
+    public void execute() {
         double forward = (-Robot.getOi().getPrimaryJoystick().getRawAxis(1)*.85);
         forward = Utilities.deadband(forward);
         // Square the forward stick
@@ -33,7 +34,7 @@ public class DriveCommand extends Command {
     }
 
     @Override
-    protected boolean isFinished() {
+    public boolean isFinished() {
         return false;
     }
 }

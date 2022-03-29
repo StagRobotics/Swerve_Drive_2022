@@ -1,11 +1,12 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Utilities;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import edu.wpi.first.math.geometry.Translation2d;
 
-public class Drive_Vertical extends Command {
+public class Drive_Vertical extends CommandBase {
 
     private double displacement;
     private double strafe = 0.0;
@@ -13,7 +14,7 @@ public class Drive_Vertical extends Command {
 
     public Drive_Vertical(double distance, String direction){
 
-        requires(DrivetrainSubsystem.getInstance());
+        addRequirements(DrivetrainSubsystem.getInstance());
         if(direction.equals("forward")){
             displacement = -.50;
         }
@@ -23,12 +24,12 @@ public class Drive_Vertical extends Command {
     }
     
     @Override
-    protected void initialize(){
+    public void initialize(){
         
     }
 
     @Override
-    protected void execute(){
+    public void execute(){
         double forward = -displacement;
         forward = Utilities.deadband(forward);
         // Square the forward stick
@@ -39,15 +40,13 @@ public class Drive_Vertical extends Command {
     }
 
     @Override
-    protected boolean isFinished(){
+    public boolean isFinished(){
         return true;
     }
 
     @Override
-    protected void end(){
+    public void end(boolean interrupted){
     }
 
-    @Override
-    protected void interrupted(){
-    }
+    
 }

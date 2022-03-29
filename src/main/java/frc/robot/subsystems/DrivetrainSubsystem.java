@@ -22,17 +22,18 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 import frc.robot.commands.DriveCommand;
 
-public class DrivetrainSubsystem extends Subsystem {
+public class DrivetrainSubsystem extends SubsystemBase {
     private static final double TRACKWIDTH = 19.5;
     private static final double WHEELBASE = 26.5;
 
-    private static final double FRONT_LEFT_ANGLE_OFFSET = -Math.toRadians(212.5);
-    private static final double FRONT_RIGHT_ANGLE_OFFSET = -Math.toRadians(78.7);
-    private static final double BACK_LEFT_ANGLE_OFFSET = -Math.toRadians(347.4);
-    private static final double BACK_RIGHT_ANGLE_OFFSET = -Math.toRadians(336.6);
+    private static final double FRONT_LEFT_ANGLE_OFFSET = -Math.toRadians(341.8);
+    private static final double FRONT_RIGHT_ANGLE_OFFSET = -Math.toRadians(67.9);
+    private static final double BACK_LEFT_ANGLE_OFFSET = -Math.toRadians(346.7);
+    private static final double BACK_RIGHT_ANGLE_OFFSET = -Math.toRadians(339.0);
 
     private static DrivetrainSubsystem instance;
 
@@ -116,10 +117,6 @@ public class DrivetrainSubsystem extends Subsystem {
 
         SmartDashboard.putNumber("Gyroscope Angle", gyroscope.getAngle().toDegrees());
 
-        SmartDashboard.putNumber("LimeLightX", tx.getDouble(0.0));
-        SmartDashboard.putNumber("LimeLightY", ty.getDouble(0.0));
-        SmartDashboard.putNumber("LimeLightArea", ta.getDouble(0.0));
-
         frontLeftModule.updateState(TimedRobot.kDefaultPeriod);
         frontRightModule.updateState(TimedRobot.kDefaultPeriod);
         backLeftModule.updateState(TimedRobot.kDefaultPeriod);
@@ -143,22 +140,10 @@ public class DrivetrainSubsystem extends Subsystem {
         backRightModule.setTargetVelocity(states[3].speedMetersPerSecond, states[3].angle.getRadians());
     }
 
-    public void resetGyroscope() {
-        gyroscope.setAdjustmentAngle(gyroscope.getUnadjustedAngle());
-    }
-
-    @Override
-    protected void initDefaultCommand() {
-        setDefaultCommand(new DriveCommand());
-    }
     
-    public void getBall(){
-        if (tx.getDouble(0.0) < -1){
-            getInstance().drive(new Translation2d(0.0, 0.5), 0.0, true);
-        }else if(tx.getDouble(0.0) > 1){
-            getInstance().drive(new Translation2d(0.0, -0.5), 0.0, true);
-        }else {
 
-    }
-}
+    
+    
+    
+
 }

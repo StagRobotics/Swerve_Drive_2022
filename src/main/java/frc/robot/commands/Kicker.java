@@ -1,40 +1,37 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.subsystems.Clock;
 import frc.robot.subsystems.Shooter;
 
-public class Kicker extends Command {
+public class Kicker extends CommandBase {
     public Kicker(){
-        requires(Shooter.getInstance());
-        requires(Clock.getInstance());
+        addRequirements(Shooter.getInstance(),Clock.getInstance());
     }
     
     @Override
-    protected void initialize(){
-        
+    public void initialize(){
+        Robot.m_Shooter.ToggleKicker();
+        //Robot.m_clock.wait(0.5);
+        //Robot.m_Shooter.ToggleKicker();
     }
     
     @Override
-    protected void execute(){
-            Robot.m_Shooter.ToggleKicker();
-            Robot.m_clock.wait(0.5);
-            Robot.m_Shooter.ToggleKicker();
+    public void execute(){
+            
 
     }
     
     @Override
-    protected boolean isFinished(){
+    public boolean isFinished(){
             return true;
     }
     
     @Override
-    protected void end(){
+    public void end(boolean interrupted){
     }
     
-    @Override
-    protected void interrupted(){
-         
-    }
+    
 }

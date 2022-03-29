@@ -1,12 +1,13 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Utilities;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import edu.wpi.first.math.geometry.Translation2d;
 
 
-public class Drive_Horizontal extends Command{
+public class Drive_Horizontal extends CommandBase{
 
     private double displacement = 0.0;
     private double forward = 0.0;
@@ -14,7 +15,7 @@ public class Drive_Horizontal extends Command{
 
     public Drive_Horizontal(double distance, String direction){
         
-        requires(DrivetrainSubsystem.getInstance());
+        addRequirements(DrivetrainSubsystem.getInstance());
         if(direction.equals("left")){
             displacement = -.30;
         }
@@ -24,11 +25,11 @@ public class Drive_Horizontal extends Command{
     }
 
     @Override
-    protected void initialize(){
+    public void initialize(){
     }
 
     @Override
-    protected void execute(){
+    public void execute(){
         double strafe = -displacement;
         strafe = Utilities.deadband(strafe);
         // Square the strafe stick
@@ -38,16 +39,14 @@ public class Drive_Horizontal extends Command{
     }
 
     @Override
-    protected boolean isFinished(){
+    public boolean isFinished(){
         return true;
     }
 
     @Override
-    protected void end(){
+    public void end(boolean interrupted){
     }
 
-    @Override
-    protected void interrupted(){
-    }
+    
 
 }

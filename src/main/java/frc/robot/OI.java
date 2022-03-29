@@ -6,13 +6,11 @@ import frc.robot.commands.ClimbUp;
 import frc.robot.commands.Grab;
 import frc.robot.commands.Kicker;
 import frc.robot.commands.MediumShooter;
-import frc.robot.commands.One_Auto;
+import frc.robot.commands.ShortShooter;
 import frc.robot.commands.ToggleIntake;
 import frc.robot.commands.FastShooter;
-import frc.robot.subsystems.DrivetrainSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 public class OI {
     /*
@@ -23,15 +21,13 @@ public class OI {
 
     public OI() {
         // Back button zeroes the drivetrain
-        new JoystickButton(primaryJoystick, 7).whenPressed(
-                new InstantCommand(() -> DrivetrainSubsystem.getInstance().resetGyroscope())
-        );
         new JoystickButton(primaryJoystick, 1).whenPressed(
             new ToggleIntake()
         );
-        new JoystickButton(secondaryJoystick, 3).whenPressed(new MediumShooter());
-        new JoystickButton(secondaryJoystick, 8).whenPressed(new FastShooter());
-        new JoystickButton(secondaryJoystick, 2).whenPressed(new Grab());
+        new JoystickButton(secondaryJoystick, 3).whenPressed(new ShortShooter());
+        new JoystickButton(secondaryJoystick, 7).whenPressed(new FastShooter());
+        new JoystickButton(secondaryJoystick, 8).whenPressed(new MediumShooter());
+        new JoystickButton(primaryJoystick, 3).whenPressed(new Grab());
         new JoystickButton(secondaryJoystick, 4).whenPressed(new CancelClimb());
         new JoystickButton(secondaryJoystick, 5).whenPressed(new ClimbUp());
         new JoystickButton(secondaryJoystick, 6).whenPressed(new ClimbDown());

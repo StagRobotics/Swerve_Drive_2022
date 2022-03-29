@@ -1,19 +1,21 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.subsystems.DistanceSensor;
 
-public class One_Auto extends CommandGroup{
+public class One_Auto extends SequentialCommandGroup{
     public One_Auto(){
-        addSequential(new ToggleIntake());
-        addSequential(new Drive_Vertical(1.0, "forward"));
-        addSequential(new wait(0.5));
-        addSequential(new ToggleIntake());
-        addSequential(new FastShooter());
-        addSequential(new wait(1.0));
-        addSequential(new Kicker());
-        addSequential(new wait(1.0));
-        addSequential(new Kicker());
-        addSequential(new wait(0.5));
-        addSequential(new FastShooter());
+        addCommands(
+            new MediumShooter(),
+            new WaitCommand(2.0),
+            new Kicker(),
+            new WaitCommand(1.0),
+            new FastShooter()
+            //while(DistanceSensor.getDistance() < 84){
+                //new Drive_Vertical(1.0, "backward"),
+            //}
+        );
     }
+
 }

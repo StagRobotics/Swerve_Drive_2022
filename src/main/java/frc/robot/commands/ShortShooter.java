@@ -5,19 +5,20 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.subsystems.Shooter;
 
-public class FastShooter extends CommandBase {
-    public FastShooter(){
+public class ShortShooter extends CommandBase {
+    
+    public ShortShooter(){
         addRequirements(Shooter.getInstance());
     }
     @Override
     public void initialize(){
-        
+        Robot.m_Shooter.ShortWheel();
     }
 
     @Override
     public void execute(){
         //Robot.m_Shooter.toggleSpin();
-        //Robot.m_Shooter.FastWheel();
+        
         
     }
 
@@ -30,6 +31,5 @@ public class FastShooter extends CommandBase {
     public void end(boolean interrupted){
     }
 
-    
     
 }
